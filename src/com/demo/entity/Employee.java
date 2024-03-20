@@ -2,9 +2,9 @@ package com.demo.entity;
 
 import java.time.LocalDate;
 import java.util.List;
-
+// This entity class for Employee entity, also provides the constructors and getter-setter methods for the fields. 
 public class Employee {
-
+	
 	private String employeeId;
 	
 	private String name;

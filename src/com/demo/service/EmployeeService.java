@@ -5,11 +5,14 @@ import java.util.List;
 import java.util.UUID;
 
 import com.demo.entity.Employee;
+//This is a service class used for providing business logic.
+public class EmployeeService implements IEmployeeService{
 
-public class EmployeeService {
-
+	// made the list to store the employees.
 	List<Employee> emps = new ArrayList<Employee>();
 	
+	// to create the employee.
+	@Override
 	public Employee createEmployee(Employee employee) {
 		
 		employee.setEmployeeId(UUID.randomUUID().toString());
@@ -17,6 +20,8 @@ public class EmployeeService {
 		return employee;
 	}
 	
+	// to update the employee, if empId is wrong will print the reason and return null.
+	@Override
 	public String updateEmployee(Employee employee, String empId) {
 		for(int i=0; i<emps.size(); i++) {
 			if(emps.get(i).getEmployeeId().equals(empId)) {
@@ -29,6 +34,8 @@ public class EmployeeService {
 		return null;
 	}
 	
+	//to delete the employee by empId, if empId is wrong will print the reason and return null.
+	@Override
 	public String deleteEmployee(String empId) {
 		
 		for(int i=0; i<emps.size(); i++) {
@@ -41,6 +48,8 @@ public class EmployeeService {
 		return null;
 	}
 	
+	//to retrieve the employee by empId, if empId is wrong will print the reason and return null.
+	@Override
 	public Employee retrieveEmployee(String empId) {
 		
 		for(int i=0; i<emps.size(); i++) {
@@ -52,6 +61,8 @@ public class EmployeeService {
 		return null;
 	}
 	
+	// to sort the employees by their age.
+	@Override
 	public void sortByAge() {
 		int n = emps.size();
 		for(int i=0; i<n; i++) {

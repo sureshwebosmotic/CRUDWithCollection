@@ -7,142 +7,157 @@ import java.util.Scanner;
 
 import com.demo.entity.Employee;
 import com.demo.service.EmployeeService;
-
+import com.demo.service.IEmployeeService;
+// This Class is used for taking input from user and calling service method for CRUD operation. we are taking total three employees's details.
 public class Main {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		System.out.println("");
-		List<String> skills1 = new ArrayList<>();
+		//defined list to store multiple skill for first Employee.
+		List<String> firstEmpSkills = new ArrayList<>();
 		
+		//defined list to store multiple skill for second Employee.
+		List<String> secondEmpSkills = new ArrayList<>();
 		
-		List<String> skills2 = new ArrayList<>();
+		//defined list to store multiple skill for third Employee.
+		List<String> thirdEmpSkills = new ArrayList<>();
 		
-		List<String> skills3 = new ArrayList<>();
-		
-		Scanner sc = new Scanner(System.in);
+		//used Scanner class for taking input from user
+		Scanner scanner = new Scanner(System.in);
 		System.out.println("Enter First Employee's name");
-		String empName = sc.nextLine();
-		System.out.println("Enter First Employee's age");
-
-		Integer age = sc.nextInt();
-		sc.nextLine();
+		
+		String firstEmpName = scanner.nextLine();
+		System.out.println("Enter First Employee's age, please don't enter any other data type's value.");
+		
+		Integer firstEmpAge = scanner.nextInt();
+		scanner.nextLine();
 		System.out.println("Enter First Employee's skill no 1");
 		
-		String inSkills1 = sc.nextLine();
+		String skill = scanner.nextLine();
 		
-		
+		firstEmpSkills.add(skill);
 		
 		System.out.println("Enter First Employee's skill no 2");
-		String inSskills2 = sc.nextLine();
-		skills1.add(inSkills1);
-		skills1.add(inSskills2);
+		skill = scanner.nextLine();
+		
+		firstEmpSkills.add(skill);
 
 		System.out.println("Enter First Employee's salary");
 
-		String salary = sc.nextLine();
+		String firstEmpSalary = scanner.nextLine();
 		System.out.println("Enter First Employee's joining date in the form of 2008-07-09 (yyyy-mm-dd)");
-
-		String joiningdate = sc.nextLine();
 		
+		String firstEmpJoiningDate = scanner.nextLine();
+		//prevent from storing the future joining date which is invalid.
+		while(LocalDate.parse(firstEmpJoiningDate).isAfter(LocalDate.now())){
+			System.out.println("please don't provide future joining date, enter valid joining date");
+			firstEmpJoiningDate = scanner.nextLine();
+		}
 		System.out.println("Enter Second Employee's name");
-		String empName1 = sc.nextLine();
-		System.out.println("Enter Second Employee's age");
-
-		Integer age1 = sc.nextInt();
-		sc.nextLine();
+		String secondEmpName = scanner.nextLine();
+		
+		System.out.println("Enter Second Employee's age, please don't enter any other data type's value.");
+		Integer secondEmpAge = scanner.nextInt();
+		scanner.nextLine();
+		
 		System.out.println("Enter Second Employee's skill no 1");
-		String inSkills3 = sc.nextLine();
-		skills2.add(inSkills3);
+		skill = scanner.nextLine();
+		secondEmpSkills.add(skill);
+		
 		System.out.println("Enter Second Employee's skill no 2");
-		String inSskills4 = sc.nextLine();
-		skills2.add(inSskills4);
+		skill = scanner.nextLine();
+		secondEmpSkills.add(skill);
+		
 		System.out.println("Enter Second Employee's salary");
-
-		String salary1 = sc.nextLine();
+		String secondEmpsalary = scanner.nextLine();
+		
 		System.out.println("Enter Second Employee's joining date in the form of 2008-07-09 (yyyy-mm-dd)");
-
-		String joiningdate1 = sc.nextLine();
+		String secondEmpJoiningDate = scanner.nextLine();
+		//prevent from storing the future joining date which is invalid.
+		while(LocalDate.parse(secondEmpJoiningDate).isAfter(LocalDate.now())){
+			System.out.println("please don't provide future joining date, enter valid joining date");
+			secondEmpJoiningDate = scanner.nextLine();
+		}
 		
 		System.out.println("Enter Third Employee's name");
-		String empName2 = sc.nextLine();
-		System.out.println("Enter Third Employee's age");
-
-		Integer age2 = sc.nextInt();
-		sc.nextLine();
+		String thirdEmpName = scanner.nextLine();
+		
+		System.out.println("Enter Third Employee's age, please don't enter any other data type's value.");
+		Integer thirdEmpAge = scanner.nextInt();
+		scanner.nextLine();
+		
 		System.out.println("Enter Third Employee's skill no 1");
-		String inSkills5 = sc.nextLine();
-		skills3.add(inSkills5);
+		skill = scanner.nextLine();
+		thirdEmpSkills.add(skill);
+		
 		System.out.println("Enter Third Employee's skill no 2");
-		String inSskills6 = sc.nextLine();
-		skills3.add(inSskills6);
+		skill = scanner.nextLine();
+		thirdEmpSkills.add(skill);
+		
 		System.out.println("Enter Third Employee's salary");
-
-		String salary2 = sc.nextLine();
+		String thirdEmpsalary = scanner.nextLine();
+		
 		System.out.println("Enter Third Employee's joining date in the form of 2008-07-09 (yyyy-mm-dd)");
+		String thirdEmpJoiningDate = scanner.nextLine();
+		//prevent from storing the future joining date which is invalid.
+		while(LocalDate.parse(thirdEmpJoiningDate).isAfter(LocalDate.now())){
+			System.out.println("please don't provide future joining date, enter valid joining date");
+			thirdEmpJoiningDate = scanner.nextLine();
+		}
+		
+		Employee firstEmp = new Employee(firstEmpName, firstEmpSkills, firstEmpAge, firstEmpSalary, LocalDate.parse(firstEmpJoiningDate));
+		Employee secondEmp = new Employee(secondEmpName, secondEmpSkills, secondEmpAge, secondEmpsalary, LocalDate.parse(secondEmpJoiningDate));
+		Employee thirdEmp = new Employee(thirdEmpName, thirdEmpSkills, thirdEmpAge, thirdEmpsalary, LocalDate.parse(thirdEmpJoiningDate));
 
-		String joiningdate2 = sc.nextLine();
-		Employee emp1 = new Employee(empName, skills1, age, salary, LocalDate.parse(joiningdate));
-		Employee emp2 = new Employee(empName1, skills2, age1, salary1, LocalDate.parse(joiningdate1));
-		Employee emp3 = new Employee(empName2, skills3, age2, salary2, LocalDate.parse(joiningdate2));
-//		Employee emp4 = new Employee("Shyam", skills2, 32, "20000", LocalDate.parse("2009-09-07"));
-//		Employee emp5 = new Employee("Joe", skills1, 41, "25000", LocalDate.parse("2006-05-05"));
-//		Employee emp6 = new Employee("Jack", skills2, 23, "46000", LocalDate.parse("2013-11-11"));
-//		Employee emp7 = new Employee("Ram", skills1, 35, "43300", LocalDate.parse("2015-08-25"));
-//		Employee emp8 = new Employee("Manas", skills2, 39, "18500", LocalDate.parse("2022-03-17"));
-
-		EmployeeService empService = new EmployeeService();
-		Employee createdEmp1 = empService.createEmployee(emp1);
-		Employee createdEmp2 = empService.createEmployee(emp2);
-		Employee createdEmp3 = empService.createEmployee(emp3);
-//		Employee createdEmp4 = empService.createEmployee(emp4);
-//		Employee createdEmp5 = empService.createEmployee(emp5);
-//		Employee createdEmp6 = empService.createEmployee(emp6);
-//		Employee createdEmp7 = empService.createEmployee(emp7);
-//		Employee createdEmp8 = empService.createEmployee(emp8);
+		
+		IEmployeeService empService = new EmployeeService();
+		Employee createdFirstEmp = empService.createEmployee(firstEmp);
+		Employee createdSecondEmp = empService.createEmployee(secondEmp);
+		Employee createdThirdEmp = empService.createEmployee(thirdEmp);
 
 		System.out.println("created Employees :");
-		System.out.println(createdEmp1.toString());
-		System.out.println(createdEmp2.toString());
-		System.out.println(createdEmp3.toString());
-//		System.out.println(createdEmp4.toString());
-//		System.out.println(createdEmp5.toString());
-//		System.out.println(createdEmp6.toString());
-//		System.out.println(createdEmp7.toString());
-//		System.out.println(createdEmp8.toString());
+		System.out.println(createdFirstEmp.toString());
+		System.out.println(createdSecondEmp.toString());
+		System.out.println(createdThirdEmp.toString());
+
+		//used this for providing line space
 		System.out.println("");
 
 		System.out.println("Enter Employee's Id for Updating the details");
-		String empId = sc.nextLine();
+		String empId = scanner.nextLine();
+		
 		System.out.println("update Employee's salary");
-		String empSalary = sc.nextLine();
-		createdEmp1.setSalary(empSalary);
-		String result = empService.updateEmployee(createdEmp1, empId);
+		String empSalary = scanner.nextLine();
+		//we are updating only one field for now which is salary.
+		Employee tobeUpdateEmp = new Employee(firstEmpName, firstEmpSkills, firstEmpAge, empSalary, LocalDate.parse(firstEmpJoiningDate));
+		tobeUpdateEmp.setEmployeeId(empId);
+		String result = empService.updateEmployee(tobeUpdateEmp, empId);
 		System.out.println("updated");
 		System.out.println(result);
+		
 		System.out.println("");
 
 		System.out.println("Enter Employee's Id for retrive the employee");
-		String empIdFR = sc.nextLine();
+		empId = scanner.nextLine();
 		
-		Employee retrivedEmp = empService.retrieveEmployee(empIdFR);
+		Employee retrivedEmp = empService.retrieveEmployee(empId);
 		System.out.println("retrived Employee:" +" "+ retrivedEmp.toString());
+		
 		System.out.println("");
 
 		System.out.println("Enter Employee's Id for remove the employee");
-		String empIdFD = sc.nextLine();
-		String removed = empService.deleteEmployee(empIdFD);
+		empId = scanner.nextLine();
+		String removed = empService.deleteEmployee(empId);
 		System.out.println("removed : ");
-
 		System.out.println(removed);
+		
 		System.out.println("");
 
 		System.out.println("Enter Sort for sorting the employees by age");
-		String sort = sc.nextLine();
-		if(sort.equals(sort)) {
+		String sort = scanner.nextLine();
+		if (sort.equalsIgnoreCase("Sort")) {
 			System.out.println("sorted Employees By age");
 			empService.sortByAge();
-		}else {
+		} else {
 			System.out.println("Input is wrong.");
 		}
 	}
