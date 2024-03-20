@@ -1,5 +1,7 @@
 package com.demo.service;
 
+import java.util.List;
+
 import com.demo.entity.Employee;
 
 // This interface is used for defining service methods which service class will implement.
@@ -19,4 +21,7 @@ public interface IEmployeeService {
 	
 	// to sort the employees by their age.
 	public void sortByAge();
+	
+	//to retrieve all the employees.
+	public List<Employee> retrieveEmployees();
 }

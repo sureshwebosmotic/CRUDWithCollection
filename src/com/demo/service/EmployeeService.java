@@ -48,6 +48,12 @@ public class EmployeeService implements IEmployeeService{
 		return null;
 	}
 	
+	//to retrieve all the employees.
+	@Override
+	public List<Employee> retrieveEmployees() {
+			return emps;
+	}
+
 	//to retrieve the employee by empId, if empId is wrong will print the reason and return null.
 	@Override
 	public Employee retrieveEmployee(String empId) {
